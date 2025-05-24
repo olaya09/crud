@@ -70,21 +70,24 @@ public class ControlVehiculoGui implements ActionListener{
         }
         
         if(e.getSource() == this.vistaVehic.jbtn_consultar ){
-            Vehiculo auxVehiculo= new Vehiculo();
-            int band=0;
-            limpiarCampos();
-            for(int i=0; i<this.listadoAutos.size(); i++){
-                auxVehiculo= this.listadoAutos.get(i);
-                
-                if(auxVehiculo.getPlaca().equals(auxVehiculo.getPlaca())){
-                    band=1;
+            Vehiculo auxVehiculo = new Vehiculo();
+            int band = 0;
+            String placaConsulta = this.vistaVehic.jtf_placa.getText();
+
+            for(int i = 0; i < this.listadoAutos.size(); i++){
+                auxVehiculo = this.listadoAutos.get(i);
+
+                if(auxVehiculo.getPlaca().equals(placaConsulta)){
+                    band = 1;
                     this.vistaVehic.jtf_marca.setText(auxVehiculo.getMarca());
-                    this.vistaVehic.jtf_anhoFab.setText(auxVehiculo.getAnhoFab()+"");                  
+                    this.vistaVehic.jtf_anhoFab.setText(auxVehiculo.getAnhoFab()+"");
+                    break;
                 }
             }
-            
-            if(band==0){
+
+            if(band == 0){
                 JOptionPane.showMessageDialog(vistaVehic, "Placa no existe!!!");
+                limpiarCampos();
             }
         }
     }
